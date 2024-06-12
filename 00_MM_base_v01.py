@@ -1,6 +1,8 @@
-# main function goes here
-# Checks user has entered yes/ no to a question
+# functions go here
+
+# Checks user has entered yes / no to a question
 def yes_no(question):
+
     while True:
         response = input(question).lower()
 
@@ -11,8 +13,31 @@ def yes_no(question):
         else:
             print("please enter yes or no")
 
+# Checks if users response is blank or not
+def not_blank(question):
+
+    while True:
+        response = input(question)
+
+        if response == "":
+            print("Sorry this can't be blank. Please try again")
+        else:
+            return response
+
+# checks users enter and integer to a given question
+def num_check(question):
+
+    while True:
+
+        try:
+            response = int(input(question))
+            return response
+
+        except ValueError:
+            print("Please enter an integer.")
 
 # main routine starts here
+
 
 # set maximum number of tickets below
 MAX_TICKETS = 3
@@ -32,6 +57,18 @@ while tickets_sold < MAX_TICKETS:
 
     if name == "xxx":
         break
+
+    age = num_check("Age: ")
+
+    if 12 <= age <= 120:
+        pass
+    elif age < 12:
+        print("sorry you are too young to watch this movie")
+        continue
+
+    else:
+        print("?? That looks like a typo, please try again")
+        continue
 
     tickets_sold += 1
 # output number of tickets sold

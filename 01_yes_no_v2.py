@@ -1,4 +1,5 @@
 # functions go here
+# Checks user has entered yes / no to a question
 def yes_no(question):
 
     while True:
