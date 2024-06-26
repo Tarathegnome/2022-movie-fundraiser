@@ -1,13 +1,7 @@
-# Next steps
-# Add currency formatting & Headings
-# Integrate this component with the bas component
-
-# PS: In Base component remember to calculate surcharge
-# Once payment method has been chosen!!
-
 import pandas
+import random
 
-
+       
 # currency formatting function
 def currency(x):
     return "${:.2f}".format(x)
@@ -26,7 +20,7 @@ mini_movie_dict = {
 
 # create data frame from dictionary to organise information
 mini_movie_frame = pandas.DataFrame(mini_movie_dict)
-mini_movie_frame = mini_movie_frame.set_index('Name')
+# mini_movie_frame = mini_movie_frame.set_index('Name')
 
 # Calculate the total ticket cost (ticket + surcharge)
 mini_movie_frame['Total'] = mini_movie_frame['Surcharge'] \
@@ -34,6 +28,24 @@ mini_movie_frame['Total'] = mini_movie_frame['Surcharge'] \
 
 # Calculate the profit for each ticket
 mini_movie_frame['Profit'] = mini_movie_frame['Ticket Price'] - 5
+
+# Choose a winner from our name list
+winner_name = random.choice(all_names)
+
+# get position of winner name in list
+win_index = all_names.index(winner_name)
+
+# look up total amount won (ie: ticket price + surcharge)
+total_won = mini_movie_frame.at[win_index, 'Total']
+
+# Set index at end (before printing)
+mini_movie_frame = mini_movie_frame.set_index('Name')
+print(mini_movie_frame)
+
+print()
+print('---- Raffle Winner ----')
+print("Congratulations {}. You have won${} ie: your "
+      "ticket is free!".format(winner_name, total_won))
 
 # calculate ticket and profit totals
 total = mini_movie_frame['Total'].sum()

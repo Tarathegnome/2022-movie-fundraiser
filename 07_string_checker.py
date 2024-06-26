@@ -1,20 +1,15 @@
-# checks that users enter a valid response(eg yes / no
+# checks that users enter a valid response(e.g. yes / no
 # cash / credit) based on a list of options
 def string_checker(question, num_letters, valid_response):
     error = "Please choose {} or {}".format(valid_response[0], valid_response[1])
-    if num_letters == 1:
-        short_version = 1
-    else:
-        short_version = 2
 
     while True:
-
         response = input(question).lower()
 
         for item in valid_response:
-            if response == item[short_version] or response == item:
+            if response == item[num_letters] or response == item:
                 return item
-        print("error")
+        print(error)
 
 
 # main routine goes here
